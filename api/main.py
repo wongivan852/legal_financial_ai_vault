@@ -12,7 +12,7 @@ import sys
 
 from config import settings
 from database import engine, Base, check_db_connection
-from routers import auth
+from routers import auth, documents, agents, admin
 from services.audit import AuditService
 
 # Configure logging
@@ -118,9 +118,9 @@ async def global_exception_handler(request: Request, exc: Exception):
 
 # Include routers
 app.include_router(auth.router, prefix="/api/auth", tags=["Authentication"])
-# app.include_router(documents.router, prefix="/api/documents", tags=["Documents"])
-# app.include_router(agents.router, prefix="/api/agents", tags=["AI Agents"])
-# app.include_router(admin.router, prefix="/api/admin", tags=["Administration"])
+app.include_router(documents.router, prefix="/api/documents", tags=["Documents"])
+app.include_router(agents.router, prefix="/api/agents", tags=["AI Agents"])
+app.include_router(admin.router, prefix="/api/admin", tags=["Administration"])
 
 
 # Health check endpoint
