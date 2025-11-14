@@ -29,16 +29,27 @@ class Settings(BaseSettings):
     QDRANT_PORT: int = 6333
     QDRANT_API_KEY: str = ""
 
-    # vLLM Endpoints
-    VLLM_CONTRACT_URL: str
-    VLLM_COMPLIANCE_URL: str
-    VLLM_ROUTER_URL: str
-    EMBEDDING_URL: str
+    # Inference Backend (vllm or ollama)
+    INFERENCE_BACKEND: str = "ollama"
+
+    # vLLM Endpoints (legacy support)
+    VLLM_CONTRACT_URL: str = ""
+    VLLM_COMPLIANCE_URL: str = ""
+    VLLM_ROUTER_URL: str = ""
+    EMBEDDING_URL: str = ""
+
+    # Ollama Configuration
+    OLLAMA_BASE_URL: str = "http://localhost:11434"
+    OLLAMA_CONTRACT_MODEL: str = "qwen2.5:14b"
+    OLLAMA_COMPLIANCE_MODEL: str = "qwen2.5:14b"
+    OLLAMA_ROUTER_MODEL: str = "qwen2.5:7b"
+    OLLAMA_RESEARCH_MODEL: str = "qwen2.5:14b"
+    OLLAMA_EMBEDDING_MODEL: str = "nomic-embed-text"
 
     # File Storage
     DOCUMENT_STORAGE_PATH: str = "/app/documents"
     MAX_UPLOAD_SIZE_MB: int = 100
-    ALLOWED_FILE_TYPES: List[str] = [".pdf", ".docx", ".doc", ".txt"]
+    ALLOWED_FILE_TYPES: List[str] = [".pdf", ".docx", ".doc", ".txt", ".xml", ".akn", ".xhtml"]
 
     # CORS
     ALLOWED_ORIGINS: List[str] = [
